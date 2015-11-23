@@ -37,21 +37,30 @@ public class TestLabConverterServlet extends TestCase {
                      + "</h2></body></html>\n", response.getOutputStreamContents());
     }
     
-//    public void test_boil() throws Exception {
-//        TestingLabConverterServlet s = new TestingLabConverterServlet();
-//        MockHttpServletRequest request =
-//        new MockHttpServletRequest();
-//        MockHttpServletResponse response =
-//        new MockHttpServletResponse();
+    public void test_convert_value() throws Exception {
+        TestingLabConverterServlet s = new TestingLabConverterServlet();
+        MockHttpServletRequest request =
+        new MockHttpServletRequest();
+        MockHttpServletResponse response =
+        new MockHttpServletResponse();
+        String farTemp = "86";
+        String celTemp = "30";
+        String austinTemperature = "451";
+        request.setupAddParameter("farenheitTemperature", farTemp);
+        response.setExpectedContentType("text/html");
+        
+        s.doGet(request, response);
+        response.verify();
+        
+        String expectedOutput = "<html><head><title>Temperature Converter Result</title>"
+        + "</head><body><h2>" + farTemp + " Farenheit = " + celTemp + " Celsius "
+        + "</h2>\n"
+        + "<p><h3>The temperature in Austin is " + austinTemperature + " degrees Farenheit</h3>\n"
+        + "</body></html>\n";
+        
+        assertEquals(expectedOutput, response.getOutputStreamContents());
+        
+    }
     
-        
-        
-//        request.setupAddParameter("Fahrenheit", "212");
-//        response.setExpectedContentType("text/html");
-//        s.doGet(request,response);
-//        response.verify();
-//        assertEquals("Fahrenheit: 212, Celsius: 100.0\n",
-//                     response.getOutputStreamContents());
-//    }
     
 }
