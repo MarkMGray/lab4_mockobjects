@@ -1,9 +1,16 @@
-import junit.framework.*;
+import junit.framework.TestCase;
 import com.mockobjects.servlet.*;
 
 public class TestLabConverterServlet extends TestCase {
     
-    public void test_bad_parameter() throws Exception {
+    // Create new test
+    public TestLabConverterServlet (String name) {
+        super(name);
+    }
+    
+    public void test_bad_parameter() {
+        
+        try{
         TestingLabConverterServlet s = new TestingLabConverterServlet();
         MockHttpServletRequest request =
         new MockHttpServletRequest();
@@ -16,6 +23,9 @@ public class TestLabConverterServlet extends TestCase {
         s.doGet(request, response);
         response.verify();
         assertEquals("<html><head><title>No Temperature</title></head><body><h2>Need to enter a temperature!</h2></body></html>\n", response.getOutputStreamContents());
+        }catch(Exception e ){
+            
+        }
     }
     
     public void test_non_double() throws Exception {
@@ -60,6 +70,13 @@ public class TestLabConverterServlet extends TestCase {
         
         assertEquals(expectedOutput, response.getOutputStreamContents());
         
+    }
+    
+    public static void main(String args[]) {
+        String[] testCaseName =
+        { TestLabConverterServlet.class.getName() };
+        // junit.swingui.TestRunner.main(testCaseName);
+        junit.textui.TestRunner.main(testCaseName);
     }
     
     
