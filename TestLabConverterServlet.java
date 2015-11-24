@@ -9,6 +9,7 @@ public class TestLabConverterServlet extends TestCase {
     }
     
     public void test_no_parameter() throws Exception {
+        System.out.println("Testing No Parameters");
         TestingLabConverterServlet s = new TestingLabConverterServlet();
         MockHttpServletRequest request =
         new MockHttpServletRequest();
@@ -23,6 +24,7 @@ public class TestLabConverterServlet extends TestCase {
     }
     
     public void test_wrong_parameter() throws Exception {
+        System.out.println("Testing Wrong Parameter");
         TestingLabConverterServlet s = new TestingLabConverterServlet();
         MockHttpServletRequest request =
         new MockHttpServletRequest();
@@ -38,6 +40,7 @@ public class TestLabConverterServlet extends TestCase {
     }
     
     public void test_non_double() throws Exception {
+        System.out.println("Testing Non-Double");
         TestingLabConverterServlet s = new TestingLabConverterServlet();
         MockHttpServletRequest request =
         new MockHttpServletRequest();
@@ -57,6 +60,7 @@ public class TestLabConverterServlet extends TestCase {
     }
     
     public void test_convert_value() throws Exception {
+        System.out.println("Testing Conversion Value");
         TestingLabConverterServlet s = new TestingLabConverterServlet();
         MockHttpServletRequest request =
         new MockHttpServletRequest();
