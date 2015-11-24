@@ -8,9 +8,21 @@ public class TestLabConverterServlet extends TestCase {
         super(name);
     }
     
-    public void test_bad_parameter() {
+    public void test_no_parameter() throws Exception {
+        TestingLabConverterServlet s = new TestingLabConverterServlet();
+        MockHttpServletRequest request =
+        new MockHttpServletRequest();
+        MockHttpServletResponse response =
+        new MockHttpServletResponse();
         
-        try{
+        response.setExpectedContentType("text/html");
+        
+        s.doGet(request, response);
+        response.verify();
+        assertEquals("<html><head><title>No Temperature</title></head><body><h2>Need to enter a temperature!</h2></body></html>\n", response.getOutputStreamContents());
+    }
+    
+    public void test_wrong_parameter() throws Exception {
         TestingLabConverterServlet s = new TestingLabConverterServlet();
         MockHttpServletRequest request =
         new MockHttpServletRequest();
@@ -23,9 +35,6 @@ public class TestLabConverterServlet extends TestCase {
         s.doGet(request, response);
         response.verify();
         assertEquals("<html><head><title>No Temperature</title></head><body><h2>Need to enter a temperature!</h2></body></html>\n", response.getOutputStreamContents());
-        }catch(Exception e ){
-            
-        }
     }
     
     public void test_non_double() throws Exception {
